@@ -1,20 +1,19 @@
 # Property Connect Role-Based View
 
-Interactive Platform Housing Group aligned role-based view for Property Connect / Totalmobile modules.
+Updated interactive Platform Housing Group aligned role-based view.
 
-## Local run
+## Update existing GitHub/Vercel project
 
-```bash
-npm install
-npm run dev
-```
+1. Download and extract this ZIP.
+2. Open your existing GitHub project folder on your computer.
+3. Copy the extracted files over the existing project files.
+4. Commit and push the changes.
+5. Vercel should automatically redeploy.
 
-## Vercel deployment
-
-Use these settings:
+## Vercel settings
 
 - Framework Preset: Vite
 - Build Command: npm run build
 - Output Directory: dist
 - Install Command: npm install
-- Root Directory: leave blank if package.json is at the top level
+- Root Directory: leave blank if package.json is at the top level.

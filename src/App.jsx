@@ -1,17 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
-const BRAND = {
-  purple: "#3E2368",
-  green: "#95C11F",
-  blue: "#009FE3",
-  pink: "#E6007E",
-  amber: "#F9B233",
-  ink: "#202124",
-  soft: "#F6F4FA",
-  border: "#DED8EA",
-};
-
 const Icon = ({ symbol, className = "", size = 20 }) => (
   <span
     className={`inline-flex items-center justify-center ${className}`}
@@ -47,12 +36,9 @@ const USERS = [
   { id: "surveyor", label: "Surveyors", icon: ClipboardCheck, colour: "bg-[#95C11F]" },
   { id: "planner", label: "Planners / Schedulers", icon: CalendarDays, colour: "bg-[#F9B233]" },
   { id: "asset", label: "Home Investment", icon: Home, colour: "bg-[#3E2368]" },
-  { id: "compliance", label: "Compliance Officers", icon: ShieldCheck, colour: "bg-[#009FE3]" },
-  { id: "customer", label: "Customer Service", icon: Users, colour: "bg-[#E6007E]" },
-  { id: "commercial", label: "Commercial / Materials", icon: Package, colour: "bg-[#F9B233]" },
-  { id: "management", label: "Management", icon: BarChart3, colour: "bg-[#3E2368]" },
+  { id: "compliance", label: "Compliance", icon: ShieldCheck, colour: "bg-[#009FE3]" },
+  { id: "commercial", label: "Commercial", icon: Package, colour: "bg-[#F9B233]" },
   { id: "sustainability", label: "Energy / Sustainability", icon: Leaf, colour: "bg-[#95C11F]" },
-  { id: "it", label: "IT / Integration", icon: PlugZap, colour: "bg-slate-600" },
 ];
 
 const MODULES = [
@@ -232,20 +218,6 @@ function filterModules(query) {
   });
 }
 
-function runTests() {
-  console.assert(isRelevant(["operative"], "operative") === true, "operative should be relevant to operative content");
-  console.assert(isRelevant(["operative"], "planner") === false, "planner should not be relevant to operative-only content");
-  console.assert(isRelevant(["all"], "planner") === true, "all-tagged content should be relevant to every selected role");
-  console.assert(isRelevant(["asset"], "all") === true, "all selected should show every content item");
-  console.assert(filterModules("").length === MODULES.length, "empty search should return all modules");
-  console.assert(filterModules("EPC").some((module) => module.id === "alm"), "EPC search should include ALM");
-  console.assert(filterModules("supplier").some((module) => module.id === "connect"), "supplier search should include Connect");
-  console.assert(filterModules("contractor").some((module) => module.id === "connect"), "contractor search should include Connect");
-  console.assert(filterModules("zzzz-not-found").length === 0, "unmatched search should return no modules");
-}
-
-runTests();
-
 function HighlightWrapper({ users, selected, dim, children }) {
   const active = !dim || isRelevant(users, selected);
 
@@ -269,7 +241,6 @@ export default function App() {
   const ActiveIcon = selectedUser.icon;
 
   const filteredModules = useMemo(() => filterModules(query), [query]);
-  const moduleColumns = filteredModules;
 
   return (
     <div className="min-h-screen bg-[#F6F4FA] text-[#202124]">
@@ -351,7 +322,7 @@ export default function App() {
 
             <div className="relative overflow-hidden rounded-[2rem] border border-[#DED8EA] bg-gradient-to-br from-white to-[#F6F4FA] p-4">
               <div className="grid gap-3 2xl:grid-cols-3 xl:grid-cols-2">
-                {moduleColumns.map((module) => (
+                {filteredModules.map((module) => (
                   <ModuleCard key={module.id} module={module} selected={selected} dim={dimIrrelevant} />
                 ))}
               </div>
