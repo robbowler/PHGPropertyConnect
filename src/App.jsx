@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 
 const Icon = ({ symbol, className = "", size = 20 }) => (
   <span
@@ -243,7 +244,9 @@ export default function App() {
   const filteredModules = useMemo(() => filterModules(query), [query]);
 
   return (
-    <div className="min-h-screen bg-[#F6F4FA] text-[#202124]">
+    <>
+      <Analytics />
+      <div className="min-h-screen bg-[#F6F4FA] text-[#202124]">
       <header className="sticky top-0 z-30 border-b border-[#DED8EA] bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -395,7 +398,8 @@ export default function App() {
           </div>
         </section>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
 
