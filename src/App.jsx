@@ -343,7 +343,10 @@ function ModuleCard({ module, selected, dim }) {
         </div>
         <div className="mt-3 space-y-1.5">
           {module.bullets.map((bullet) => {
-            const bulletRelevant = bullet.text === "Common foundation that supports Connect, Mobilise, ALM and FSI" && selected === "operative" ? false : !dim || (selected === "operative" && module.id === "mobilise") || isRelevant(bullet.users, selected);
+            const bulletRelevant =
+              selected === "operative"
+                ? module.id === "mobilise"
+                : (!dim || isRelevant(bullet.users, selected));
             return (
               <motion.div key={bullet.text} animate={{ opacity: selected === "all" || bulletRelevant ? 1 : 0.22 }} transition={{ duration: 0.2 }} className={`flex gap-2 rounded-xl px-2 py-1 text-[13px] leading-snug ${bulletRelevant && selected !== "all" && dim ? "bg-[#95C11F]/15 ring-1 ring-[#95C11F]/25" : ""}`}>
                 <CheckCircle2 size={16} className={bulletRelevant ? "mt-0.5 shrink-0 text-[#95C11F]" : "mt-0.5 shrink-0 text-[#DED8EA]"} />
