@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: #F6F4FA;
-  font-family: Arial, sans-serif;
 }

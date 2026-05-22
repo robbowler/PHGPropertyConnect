@@ -1,17 +1,17 @@
-# Property Connect Export
+# Property Connect Role-Based View
 
-## GitHub Update
-1. Extract ZIP
-2. Replace existing project files
-3. Push to GitHub
+Correct full export for GitHub / Vercel deployment.
 
-```bash
-git add .
-git commit -m "Update Property Connect site"
-git push
-```
+## Update GitHub / Vercel
+
+1. Extract this ZIP.
+2. Copy the extracted files over your current project files.
+3. Commit and push to GitHub.
+4. Vercel will redeploy automatically.
 
 ## Vercel Settings
+
 - Framework Preset: Vite
 - Build Command: npm run build
 - Output Directory: dist
+- Install Command: npm install
